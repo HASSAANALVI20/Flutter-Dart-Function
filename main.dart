@@ -41,29 +41,7 @@ void main() {
   // String? data = stdin.readLineSync();
 
   // reverseString(data);
-
-  for (int i = 0; i < 3; i++) {
-    String studentName, email, password, phoneNumber;
-    print("\nWelcome Student Portal Please Signup ");
-    stdout.write("\nEnter your username:\n");
-    studentName = stdin.readLineSync()!;
-
-    stdout.write("\nEnter your email:\n");
-    email = stdin.readLineSync()!;
-
-    stdout.write("Enter your password:");
-    password = stdin.readLineSync()!;
-
-    stdout.write("Enter your phone number optional:");
-    phoneNumber = stdin.readLineSync()!;
-
-    List<Map<String, dynamic>> students = [
-      // {'studentname': [], 'email': [], 'password': [], 'phoneNumber': []},
-      // {'studentname': [], 'email': [], 'password': [], 'phoneNumber': []},
-      // {'studentname': [], 'email': [], 'password': [], 'phoneNumber': []},
-    ];
-    signUp(i, studentName, email, password, students, phoneNumber: phoneNumber);
-  }
+  signUp();
 }
 
 area(diameter) {
@@ -123,36 +101,57 @@ reverseString(data) {
   print(reverseList.join());
 }
 
-signUp(i, studentName, email, password, students, {phoneNumber}) {
-  students[i]['studentname'] = studentName;
-  students[i]['email'] = email;
-  students[i]['password'] = password;
-  students[i]['phoneNumber'] = phoneNumber;
+signUp() {
+  String studentName, email, password, phoneNumber;
 
-  print(students);
-  // loginUser(students);
+  List<Map<String, dynamic>> students = [];
+  for (int i = 0; i < 3; i++) {
+    print("\nWelcome Student Portal Please Signup ");
+    stdout.write("\nEnter your username:\n");
+    studentName = stdin.readLineSync()!;
+
+    stdout.write("\nEnter your email:\n");
+    email = stdin.readLineSync()!;
+
+    stdout.write("Enter your password:");
+    password = stdin.readLineSync()!;
+
+    stdout.write("Enter your phone number optional:");
+    phoneNumber = stdin.readLineSync()!;
+
+    var data = {
+      'studentname': studentName,
+      'email': email,
+      'password': password,
+      'phoneNumber': phoneNumber,
+    };
+
+    students.add(data);
+  }
+
+  loginStudent(students);
 }
 
-void loginUser(users) {
-  stdout.writeln();
-  print("*** Welcome Login Portal ***");
-  stdout.writeln();
-  stdout.write("Enter your enter email:");
-  String enterEmail = stdin.readLineSync()!;
+void loginStudent(students) {
+  print("\n Welcome Student Login Portal ");
+
+  stdout.write("\nEnter your enter email:\n");
+  String studentEmail = stdin.readLineSync()!;
+
   stdout.write("Enter your enter password:");
-  String enterPassword = stdin.readLineSync()!;
-  for (int i = 0; i < 3; i++) {
-    if (users[i]?['email'] == enterEmail &&
-        users[i]?['password'] == enterPassword) {
-      stdout.writeln();
-      print("Wellcome: $enterEmail");
+  String studentPassword = stdin.readLineSync()!;
+
+  for (int j = 0; j < 3; j++) {
+    if (students[j]?['password'] == studentPassword &&
+        students[j]?['email'] == studentEmail) {
+      print("\n Succesfully Login Welocome : $studentEmail");
       stdout.writeln();
       break;
     } else
       stdout.writeln();
     print("Incorrect email or password. Please try again.");
     stdout.writeln();
-    loginUser(users);
+    loginStudent(students);
     break;
   }
 }
