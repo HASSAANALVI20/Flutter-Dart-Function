@@ -41,7 +41,28 @@ void main() {
   // String? data = stdin.readLineSync();
 
   // reverseString(data);
-  signUp();
+
+  // stdout.write("\n Q4: Q5: Write a program in Dart to signup Student\n.");
+
+  // signUp();
+
+  // stdout.write(
+  //     "\n Q6:  Write a program in Dart to calculate power of a certain numbers using function only");
+
+  // stdout.write("\nEnter the base:\n ");
+  // num? base = int.parse(stdin.readLineSync()!);
+
+  // stdout.write("\nEnter the exponent: \n");
+  // num? exponent = int.parse(stdin.readLineSync()!);
+
+  // calculatePower(base, exponent);
+  stdout.write(
+      "\n Q7: Write a function to calculate number of vowels and consonant in a String");
+
+  stdout.write("Enter your couple of words :");
+  String? words = stdin.readLineSync()!;
+  words = words.toLowerCase();
+  calculateConsonantVowel(words);
 }
 
 area(diameter) {
@@ -132,7 +153,7 @@ signUp() {
   loginStudent(students);
 }
 
-void loginStudent(students) {
+loginStudent(students) {
   print("\n Welcome Student Login Portal ");
 
   stdout.write("\nEnter your enter email:\n");
@@ -144,7 +165,7 @@ void loginStudent(students) {
   for (int j = 0; j < 3; j++) {
     if (students[j]?['password'] == studentPassword &&
         students[j]?['email'] == studentEmail) {
-      print("\n Succesfully Login Welocome : $studentEmail");
+      print("\n Succesfully Student  Login Welocome : $studentEmail");
       stdout.writeln();
       break;
     } else
@@ -154,4 +175,32 @@ void loginStudent(students) {
     loginStudent(students);
     break;
   }
+}
+
+calculatePower(base, exponent) {
+  int? result = 1;
+  while (exponent != 0) {
+    result = (result! * base) as int?;
+    --exponent;
+  }
+  print(" power: ${result}");
+}
+
+calculateConsonantVowel(words) {
+  int vowel = 0;
+  int consonant = 0;
+
+  for (int i = 0; i < words.length; i++) {
+    if (words[i] == "a" ||
+        words[i] == "e" ||
+        words[i] == "i" ||
+        words[i] == "o" ||
+        words[i] == "u") {
+      vowel++;
+    } else {
+      consonant++;
+    }
+  }
+  print("\n Total consonant in a words are: ${consonant}");
+  print("Total vowels in words are: ${vowel}");
 }
